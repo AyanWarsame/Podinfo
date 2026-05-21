@@ -13,25 +13,25 @@ spec:
     spec:
       steps:
         - uses: git-clone
-          with:
+          config:
             repoURL: https://github.com/AyanWarsame/Podinfo.git
             checkout:
               - branch: main
                 path: repo
 
         - uses: kustomize-set-image
-          with:
+          config:
             path: repo/dev
             images:
               - image: ghcr.io/stefanprodan/podinfo
-                tag: "{{ .Freight.Images[0].Tag }}"
+                newTag: ${{ freight.images[0].tag }}
 
         - uses: git-commit
-          with:
+          config:
             path: repo
             message: "update dev image"
 
         - uses: git-push
-          with:
+          config:
             path: repo
             targetBranch: main
