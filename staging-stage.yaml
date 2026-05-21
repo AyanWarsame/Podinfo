@@ -26,7 +26,7 @@ spec:
             path: repo/staging
             images:
               - image: ghcr.io/stefanprodan/podinfo
-                newTag: ${{ freight.images[0].tag }}
+                tag: ${{ imageFrom("ghcr.io/stefanprodan/podinfo", warehouse("podinfo")).Tag }}
 
         - uses: git-commit
           config:
