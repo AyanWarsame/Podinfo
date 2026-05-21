@@ -8,6 +8,8 @@ spec:
     - origin:
         kind: Warehouse
         name: podinfo
+      sources:
+        direct: true
 
   promotionTemplate:
     spec:
@@ -35,3 +37,9 @@ spec:
           config:
             path: repo
             targetBranch: main
+
+        - uses: argocd-update
+          config:
+            apps:
+              - name: podinfo-dev
+                namespace: argocd
